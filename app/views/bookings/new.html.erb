@@ -1,0 +1,20 @@
+<h1>Make a reservation</h1>
+
+<%= form_with model: @booking do |form| %>
+
+  <%= form.hidden_field :flight_id, value: @flightId %>
+
+  <div>
+    <%= form.label :class_seats %><br>
+    <%= form.select :class_seats, [['Economy','eco'],['Business','business']]%>
+  </div>
+
+  <div>
+    <%= form.label :nb_passengers %><br>
+    <%= form.number_field :nb_passengers %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

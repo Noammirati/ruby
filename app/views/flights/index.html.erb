@@ -1,0 +1,31 @@
+<
+
+
+<% if current_user %>
+  <%= link_to "My bookings", mybookings_path %>
+  <%= link_to "Sign out", destroy_user_session_path %>
+<% else %>
+  <%= link_to "Sign in", new_user_session_path%>
+  <%= link_to "Sign up", new_user_registration_path%>
+<% end %>
+
+<h2>Flights</h2>
+<%== pagy_nav(@pagy) %>
+<ul>
+  <% @flights.each do |flight| %>
+    <li>
+      Flight n° <%= flight.number %>
+      <ul>
+        <li><%= flight.getDepartureDay %></li>
+        <li><%= flight.getDepartureTime %> - <%= flight.getArrivalTime %> <% flight.getArrivalDay %>
+          <% if flight.isArrivalNextDay %>
+            ( +1 )
+          <% end %>
+        </li>
+        <li>Departure from <%= flight.departure_airport %> at </li>
+        <li>Arrival at <%= flight.arrival_airport %> at </li>
+        <li><%= link_to "Make a reservation", new_booking_path(:flight_id => flight.id) %></li>
+      </ul>
+    </li>
+  <% end %>
+</ul>

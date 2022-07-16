@@ -1,0 +1,16 @@
+<%= link_to "Back to all flights", flights_path %>
+<h2><%= @user.name %> <%= @user.surname %>'s reservations</h2>
+<ul>
+  <% @bookings.each do |booking| %>
+    <li>
+      Flight n° <%= booking.flight.number %>
+      <ul>
+        <li><%= booking.flight.getDepartureDay %></li>
+        <li>Departure from <%= booking.flight.departure_airport %> at <%= booking.flight.getDepartureTime %></li>
+        <li>Arrival at <%= booking.flight.arrival_airport %> at <%= booking.flight.getArrivalTime %></li>
+        <li>Class : <%= booking.class_seats %></li>
+        <li>Number of seats : <%= booking.nb_passengers %></li>
+      </ul>
+    </li>
+  <% end %>
+</ul>
